@@ -1,6 +1,8 @@
-from flask import Flask, render_template, request, redirect, url_for
-from firebase_admin import credentials, auth
+from flask import Flask, jsonify, render_template, request, redirect, url_for
+from firebase_admin import credentials, auth, initialize_app
+from firebase_admin.exceptions import FirebaseError  # Import FirebaseError for handling exceptions
 import firebase_admin
+
 
 
 
@@ -14,36 +16,42 @@ app = Flask(__name__)
 @app.route('/')
 def host():
     return "Home"
+@app.route('/signin', methods=['POST'])
+def signin():
+    email = request.form['email']
+    password = request.form['password']
 
-@app.route('/login', methods=['GET', 'POST'])
-def login():
-    if request.method == 'POST':
-        email = request.form['email']
-        password = request.form['password']
-
-        try:
-            user = auth.get_user_by_email(email)
-            # If no exception is raised, user exists in Firebase
-            auth_user = auth.update_user(user.uid, password=password)  # Attempt to update password
-            return 'Success'  # Modify this to render a success page or message
-        except auth.AuthError as e:
-            # If user does not exist or password update fails
-            print(e)  # Log the error (for demonstration purposes)
-            return redirect(url_for('host'))  # Redirect to home page if login fails
-
-    # If the request method is GET (when the user navigates to the login page)
-    return "LOGED"  # Render the login page
+    try:
+       # Verify the user's email and password
+        user = auth.get_user_by_email(email)
+        token = auth.create_custom_token(user.uid)
+        return jsonify({'token': token.decode()}), 200
+    except firebase_admin.auth.AuthError:
+        return jsonify({'error': 'Invalid email or password'}), 401
 
 @app.route('/signup', methods=['GET', 'POST'])
 def signup():
     if request.method == 'POST':
         email = request.form['email']
         password = request.form['password']
-        
-        # Process signup data (e.g., save to database)
-        return f"Received signup request for {email}"
-    else:
-        return render_template('signup.html')  # Render the signup form
+        try:
+            user_record = auth.create_user(
+                email=email,
+                password=password
+            )
+            print('Successfully created new user:', user_record.uid)
+            # json that has the user id and the email
+            return jsonify({
+                'email': user_record.email,
+                'user_id': user_record.uid
+            }), 200  
+        except FirebaseError as e:
+            # Handle Firebase errors
+            print('Error creating new user:', e)
+            return jsonify({'error': str(e)}), 400 # Or render a template with the error
+
+    # Render the signup form for GET requests
+    return render_template('signup.html')
 
 if __name__ == "__main__":
     app.run(debug=True)
