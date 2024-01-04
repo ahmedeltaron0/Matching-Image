@@ -15,7 +15,7 @@ app = Flask(__name__)
 def host():
     return "Home"
 
-@app.route('/login/', methods=['GET', 'POST'])
+@app.route('/login', methods=['GET', 'POST'])
 def login():
     if request.method == 'POST':
         email = request.form['email']
@@ -32,9 +32,9 @@ def login():
             return redirect(url_for('host'))  # Redirect to home page if login fails
 
     # If the request method is GET (when the user navigates to the login page)
-    return render_template('login.html')  # Render the login page
+    return "LOGED"  # Render the login page
 
-@app.route('/signup/', methods=['GET', 'POST'])
+@app.route('/signup', methods=['GET', 'POST'])
 def signup():
     if request.method == 'POST':
         email = request.form['email']
