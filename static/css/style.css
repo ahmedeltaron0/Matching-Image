@@ -1,58 +1,85 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 body {
-    font-family: Arial, sans-serif;
-    background-color: #282c34;
-  }
-  
-  .container {
-    width: 400px;
-    margin: 0 auto;
-    padding: 20px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-  }
-  
-  .login-box {
-    width: 300px;
-    margin: 0 auto;
-    padding: 20px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    background-color: #fff;
-  }
-  
-  .logo {
-    text-align: center;
-    margin-bottom: 20px;
-  }
-  
-  .login-form {
-    margin-bottom: 20px;
-  }
-  
-  .login-form input[type="text"],
-  .login-form input[type="password"] {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 10px;
-    border: 1px solid #ccc;
-    border-radius: 3px;
-  }
-  
-  .login-form button[type="submit"] {
-    width: 100%;
-    padding: 10px;
-    background-color: #4caf50;
-    color: #fff;
-    border: none;
-    border-radius: 3px;
-    cursor: pointer;
-  }
-  
-  .signup-link {
-    text-align: center;
-  }
-  
-  .signup-link a {
-    color: #4caf50;
-    text-decoration: none;
-  }
+  font-family: Arial, sans-serif;
+  background-color: #282c34;
+  color: white;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  margin-left: 30%;
+  margin-top: 15%;
+}
+
+.login-box {
+  width: 300px;
+  padding: 20px;
+  border-radius: 5px;
+  background-color: #282c34;
+}
+
+.login-form input[type="email"],
+.login-form input[type="password"],
+.login-form button[type="submit"] {
+  width: 150%;
+  padding: 15px;
+  margin-bottom: 20px; /* Create spacing between elements */
+  border: 3px solid #317185; /* Match button color */
+  border-radius: 50px;
+  background-color: #282c34;
+  color: #fff;
+}
+
+.login-form button[type="submit"] {
+  background-color: #317185;
+  cursor: pointer;
+}
+
+.login-form button[type="submit"]:hover {
+  background-color: #317185;
+}
+
+/* ... rest of your CSS remains the same ... */
+
+.signup-link {
+  text-align: center;
+}
+
+.signup-link a {
+  color: #317185;
+  text-decoration: none;
+}
+a {
+  position: absolute;
+  right: 22%;
+}
+.logo img {
+  margin-left: -30px; /* Shift to the left */
+  margin-top: 15px; /* Shift down */
+  width: 200px; /* Increase width */
+  height: 100px; /* Increase height */
+}
+.vertical-line {
+  position: absolute;
+  top: 230px; /* Shift the line down by 20 pixels */
+  left: 50%; /* Centers the line horizontally */
+  transform: translateX(-50%);
+  width: 1px; /* Adjust line thickness */
+  height: 45vh; 
+  background-color: rgba(204, 204, 204, 0.39); /* 50% brightness */
+  /* Fills the viewport height */
+}
+
+

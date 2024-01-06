@@ -1,0 +1,12 @@
+---> ID_MATCH <---
+
+
+|
+|--> login and signup pages (*)
+     |-->Don't return any data redirect to login paga if i signed up and redirect to home page if i loged in (*)
+     |-->make authentication when i log in ()
+     |-->make full front end signup / signin  ()
+     |--[x]>full authentication when log in and sign in ()
+     |-->full redirect pages ()
+|
+|-->Edit and understand code ( )
