@@ -1,11 +1,22 @@
 ---> ID_MATCH <---
 
 
-|
+
+
+[    T O D O    6 J A N    ]
+
+[1]--> MAKE A FULL FRONT END FOR SIGNUP/LOGIN PAGES ( )
+[2]--> MAKE LOGIN AND SIGN UP AUTHENTICATION WUTH FIRE BASE "BACK END" ( )
+[3]-->EDIT REDIRECT PAGES ( )
+
+
+
+[  PROGRESS  ]
+
+
 |--> login and signup pages (*)
      |-->Don't return any data redirect to login paga if i signed up and redirect to home page if i loged in (*)
-     |-->make authentication when i log in ()
-     |-->make full front end signup / signin  ()
+     |-->make full front end signup / signin  (*) --> appear logo()
      |--[x]>full authentication when log in and sign in ()
      |-->full redirect pages ()
 |
