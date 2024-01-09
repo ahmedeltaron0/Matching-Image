@@ -38,14 +38,14 @@ def signup():
 # Endpoint to render login page and handle user login
 import requests
 
-@app.route('/login/', methods=['GET', 'POST'])
+@app.route('/signin/', methods=['GET', 'POST'])
 def login():
     if request.method == 'POST':
         email = request.form['email']
         password = request.form['password']
 
         try:
-            api_key = "YOUR_API_KEY"  # Replace with your Firebase API key
+            api_key = "AIzaSyCunO6iQEo-nQK0ksMY0HFbiONZMbSafdY"  # Replace with your Firebase API key
 
             # Sign in using email and password through Firebase Authentication REST API
             url = f"https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key={api_key}"
@@ -72,15 +72,23 @@ def login():
 
         except Exception as e:
             flash('Login failed', 'error')
-            return render_template('login.html')  # Render login page with generic error message
+            return render_template('signin.html')  # Render login page with generic error message
 
     # For GET requests, render the login form
-    return render_template('login.html')
+    return render_template('signin.html')
 
 
-@app.route('/')
+@app.route('/home/')
 def home():
-    return "Welcome to the Home Page!"
+    return render_template('home.html')
+@app.route('/signin/')
+def signin():
+    return render_template('signin.html')
+
+
+@app.route('/images/' , methods= ['GET'])
+def images():
+    return "../images/logo_one.png"
 
 if __name__ == '__main__':
     app.run(debug=True)

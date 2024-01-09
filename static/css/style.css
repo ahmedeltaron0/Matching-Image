@@ -6,80 +6,176 @@
 
 body {
   font-family: Arial, sans-serif;
-  background-color: #282c34;
+  background-image: url("/static/img/2.jpg"); /* Replace with your image path */
+  background-repeat: no-repeat; /* Prevent image repetition */
+  background-size: cover; /* Scale image to cover the entire element */
+  background-position: center; /* Center the image */
   color: white;
-  margin: 0;
+  min-height: 100vh; /* Ensure full viewport height */
   display: flex;
   justify-content: center;
   align-items: center;
+  
 }
 
 .container {
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
   padding: 20px;
-  margin-left: 30%;
-  margin-top: 15%;
-}
-
-.login-box {
-  width: 300px;
-  padding: 20px;
-  border-radius: 5px;
-  background-color: #282c34;
+  width: 400px;
+  margin-top: 150px;
+  /* left: -40px; Remove this line if it's causing layout issues */
 }
 
 .login-form input[type="email"],
 .login-form input[type="password"],
 .login-form button[type="submit"] {
-  width: 150%;
+  width: 100%;
+  max-width: 300px;
   padding: 15px;
-  margin-bottom: 20px; /* Create spacing between elements */
-  border: 3px solid #317185; /* Match button color */
+  margin-bottom: 20px;
+  border: 3px solid #317185;
   border-radius: 50px;
-  background-color: #282c34;
-  color: #fff;
-}
-
-.login-form button[type="submit"] {
-  background-color: #317185;
+  color: #317185; /* Change text color to contrast with background */
+  background-color: transparent;
+  /* Remove duplicate border property below */
+  box-shadow: inset 0 0 0 3px #317185;
+  /* Add cursor pointer to input fields too */
   cursor: pointer;
 }
 
-.login-form button[type="submit"]:hover {
+/* Style specific to the submit button */
+.login-form button[type="submit"] {
+  color: white;
+  font-family: Arial, sans-serif;
+  font-size: 16px;
+  font-weight: bold;
   background-color: #317185;
+  border: none; /* Remove border to keep consistent styling */
 }
 
-/* ... rest of your CSS remains the same ... */
+/* Optional: Hover effect for the submit button */
+.login-form button[type="submit"]:hover {
+  background-color: #245769; /* Adjust color on hover as desired */
+}
+
+.logo-container {
+  position: absolute;
+  top:-25px; /* Adjust the top positioning */
+  left: 20px; /* Adjust the right positioning */
+}
+.logo {
+  width: 150px; /* Adjust the width of the logo as needed */
+  height: 150px;
+  /* Other styles for the logo */
+}
+
 
 .signup-link {
-  text-align: center;
+  color: #317185;
+  padding: 5px 10px;
+  border-radius: 5px;
+  text-decoration:none; /* Remove underline */
+  font-family: Arial, sans-serif; /* Font family */
+  font-size: 14px; /* Font size */
+  font-weight: bold; /* Font weight */
+}
+.account-link {
+  color: white;
 }
 
-.signup-link a {
+.signup-link  {
   color: #317185;
   text-decoration: none;
 }
-a {
-  position: absolute;
-  right: 22%;
-}
+
 .logo img {
-  margin-left: -30px; /* Shift to the left */
-  margin-top: 15px; /* Shift down */
-  width: 200px; /* Increase width */
-  height: 100px; /* Increase height */
+  width: 100%;
+  height: auto;
+  margin-bottom: 40px;
+  margin-top: -100px; /* Shift image up by 20 pixels */
 }
-.vertical-line {
+
+
+@media (min-width:px) { /* Adjust for larger screens */
+  .container {
+    flex-direction: row; /* Arrange elements horizontally */
+    justify-content: space-between; /* Distribute elements evenly */
+  }
+  .logo {
+    margin-right: 50px; /* Add spacing between logo and form */
+  }
+}
+.navbar {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 10px 20px;
+    position: fixed;
+    top: 0; /* Adjusted to keep the navbar at the top of the viewport */
+    right: -400px; /* Adjust as needed */
+    width: 100%;
+    justify-content: space-between; /* Aligns items evenly */
+    align-items: center; /* Aligns items vertically */
+  }
+  
+  
+  /* Navigation list styles */
+  .navbar-nav {
+    display: flex;
+    list-style: none;
+    margin: 0; /* Remove default margin */
+    padding: 0; /* Remove default padding */
+  }
+  
+  /* Individual navigation item styles */
+  .nav-item {
+    display: flex; /* Allow inline elements for flexibility */
+    padding: 15px 15px; /* Add spacing around links */
+    margin-right: 200px; /* Space between items */
+    font-weight: bold; /* Make the font bold */
+    margin-left: -150px; /* Push the navigation to the right */
+    margin-top: 5px;
+  }
+  .navbar-nav li {
+    display: inline; /* Place list items inline */
+  }
+  
+  /* Navigation link styles */
+  .nav-link {
+    font-family: sans-serif; /* Use a sans-serif font */
+    font-size: 1.2 rem; /* Set a comfortable text size */
+    color:#C1E8FF; /* Set a specific text color */
+    text-decoration: none; /* Remove underline from links */
+    text-decoration: none; /* Remove default underline */
+    border-bottom: 1px solid transparent; /* Transparent border by default */
+  }
+  .nav-link:hover {
+    border-bottom: 1px solid #C1E8FF; /* Draw a line under the link on hover */
+  } 
+
+.dot {
+  font-size: 30px;
+  width: 300px;
+  height: 300px;
+  border-radius: 100%; /* To create a circular dot */
   position: absolute;
-  top: 230px; /* Shift the line down by 20 pixels */
-  left: 50%; /* Centers the line horizontally */
-  transform: translateX(-50%);
-  width: 1px; /* Adjust line thickness */
-  height: 45vh; 
-  background-color: rgba(204, 204, 204, 0.39); /* 50% brightness */
-  /* Fills the viewport height */
+  top: 250px; /* Adjust the top position */
+  left: 650px;/* Center horizontally */
+  z-index:1; /* Ensure it's above the container */
+}
+h2 {
+  font-size: 30px;
+  color: #317185;
+  font-weight: bold;
+  margin-left: -500px;
+  margin-top: -100px;
 }
 
-
+p {
+  font-size: 20px;
+  line-height: 2;
+  margin-left: -400px;
+  margin-top: -0px
+}
