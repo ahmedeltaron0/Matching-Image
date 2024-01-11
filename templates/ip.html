@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="/static/css/ip.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Camera</title>
+</head>
+<div class="container">
+    <div class="logo-container">
+        <img class="logo" src="../static/img/fin.svg" alt="Logo">
+    </div>
+    </div>
+    <nav class="navbar">
+        <div class="container">  
+            <img src="../static/img/logo_one.svg" alt="Logo" class="navbar-logo">
+          <ul class="navbar-nav">
+            <li class="nav-item"><a style="color: grey;" href="#" class="nav-link">Home</a></li>
+            <li class="nav-item"><a style="color: grey;" href="#" class="nav-link">About</a></li>
+            <li class="nav-item"><a style="color: grey;" href="#" class="nav-link">Contact</a></li>
+            <li class="nav-item"><a style="color: grey;" href="#" class="nav-link">Camera</a></li>
+            <li class="nav-item"><a style="color: grey;" href="#" class="nav-link">IP</a></li>
+            <li class="nav-item"><a style="color: grey;" href="#" class="nav-link">Link</Link></a></li>
+            <li class="nav-item"><a style="color: grey;" href="#" class="nav-link">Photo</a></li>
+
+          </ul>
+        </div>
+      </nav>  
+<body>
+  <div class="button-container" onclick="generateTextBox()">
+    <img src="../static/img/ip_address_icon.svg" alt="Image">
+  </div>
+  <div class="textBoxWrapper">
+  </div>
+  <div class="word">
+    <h2>Camera IP</h2>
+  </div>
+  <script>
+   function generateTextBox() {
+    const container = document.querySelector('.textBoxWrapper');
+    const existingTextBox = container.querySelector('input[type="text"]');
+
+    if (!existingTextBox) {
+      const textBox = document.createElement('input');
+      textBox.setAttribute('type', 'text');
+      textBox.setAttribute('placeholder', 'Enter your text here');
+
+      container.appendChild(textBox);
+    } else {
+      container.removeChild(existingTextBox);
+    }
+  }
+  </script>
+</body>
+</html>

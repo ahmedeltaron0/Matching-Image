@@ -1,0 +1,123 @@
+body {
+  background-image: url("/static/img/2.jpg"); /* Replace with your image path */
+  background-repeat: no-repeat; /* Prevent image repetition */
+  background-size: cover; /* Scale image to cover the entire element */
+  background-position: center; /* Center the image */
+  color: white;
+  min-height: 100vh; /* Ensure full viewport height */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden; /* Prevent scrolling */
+}
+
+.navbar {
+display: flex;
+flex-wrap: wrap;
+padding: 10px 20px;
+position: fixed;
+top: 0; /* Adjusted to keep the navbar at the top of the viewport */
+right: -400px; /* Adjust as needed */
+width: 100%;
+justify-content: space-between; /* Aligns items evenly */
+align-items: center; /* Aligns items vertically */
+}
+
+
+/* Navigation list styles */
+.navbar-nav {
+display: flex;
+list-style: none;
+margin: 0; /* Remove default margin */
+padding: 0; /* Remove default padding */
+}
+
+/* Individual navigation item styles */
+.nav-item {
+display: flex; /* Allow inline elements for flexibility */
+padding: 15px 15px; /* Add spacing around links */
+margin-right: 200px; /* Space between items */
+margin-left: -180px; /* Push the navigation to the right */
+margin-top: 5px;
+}
+.navbar-nav li {
+display: inline; /* Place list items inline */
+}
+
+/* Navigation link styles */
+.nav-link {
+font-family: sans-serif; /* Use a sans-serif font */
+font-size: 1.2 rem; /* Set a comfortable text size */
+color:#C1E8FF; /* Set a specific text color */
+text-decoration: none; /* Remove underline from links */
+text-decoration: none; /* Remove default underline */
+border-bottom: 1px solid transparent; /* Transparent border by default */
+}
+.nav-link:hover {
+border-bottom: 1px solid #C1E8FF; /* Draw a line under the link on hover */
+}
+.navbar-logo {
+width: 150px; /* Adjust image width as needed */
+height: auto; /* Maintain aspect ratio */
+position: absolute;
+top: -10px; /* Adjust top position as needed */
+left: -350px; /* Adjust left position as needed */
+}
+.logo-container {
+  position: absolute;
+  top: 50px; /* Position 20% from the top of the parent */
+  right: 200px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+
+
+.logo {
+  width: 500px;  /* Adjust the width as desired */
+  height: 500px;  /* Preserve aspect ratio */
+}
+h2 {
+  font-size: 50px;
+  color: #317185;
+  font-weight: bold;
+  margin-left: -670px;
+  margin-top: -100px;
+}
+
+.button-container {
+right:490px ;
+width: 200px;
+height: 200px;
+background-color: #C1E8FF; /* Background color */
+display: flex;
+justify-content: center;
+align-items: center;
+cursor: pointer;
+border-radius: 150px;
+margin-bottom: 20px; /* Adjust the space between button-container and textBoxWrapper */
+position: relative;
+}
+
+.button-container img {
+max-width: 50%;
+max-height: 50%;
+}
+
+.textBoxWrapper {
+top: 500px;
+left: 200px;
+position: absolute ;
+display: flex;
+flex-direction: column;
+align-items: center;
+
+}
+
+h2 {
+  
+  font-size: 35px;
+  color: #317185;
+  font-weight: lighter;
+  margin-top: -200px;
+}

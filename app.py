@@ -1,7 +1,10 @@
-from flask import Flask, render_template, request, flash, redirect, url_for
+from flask import Flask, render_template, request, flash, redirect, url_for,jsonify
 from firebase_admin import credentials, initialize_app
-from firebase_admin import auth  # Import auth after initialize_app
+from firebase_admin import auth  
 from firebase_admin.exceptions import FirebaseError
+import requests
+import base64
+
 
 # Initialize Firebase
 cred = credentials.Certificate("image-match.json")
@@ -35,8 +38,6 @@ def signup():
     # For GET requests, render the signup form
     return render_template('signup.html')
 
-# Endpoint to render login page and handle user login
-import requests
 
 @app.route('/signin/', methods=['GET', 'POST'])
 def login():
@@ -85,10 +86,42 @@ def home():
 def signin():
     return render_template('signin.html')
 
+@app.route('/about/')
+def about():
+    return render_template('about.html')
+@app.route('/contact/')
+def contact():
+    return render_template('contact.html')
+@app.route('/camera/')
+def camera():
+    return render_template('camera.html')
+@app.route('/ip/')
+def ip():
+    return render_template('ip.html')
+@app.route('/link/')
+def link():
+    return render_template('link.html')
+@app.route('/photo/')
+def photo():
+    return render_template('photo.html')
+@app.route('/save-photo', methods=['POST'])
+def save_photo():
+    try:
+        data = request.json
+        count = data.get('count', 1)
+        data_url = data.get('dataURL', '')
 
-@app.route('/images/' , methods= ['GET'])
-def images():
-    return "../images/logo_one.png"
+        # Extract the base64 image data
+        _, image_data = data_url.split(',')
+
+        # Decode and save the image
+        image_binary = base64.b64decode(image_data)
+        with open(f'dataset/photo_{count}.jpg', 'wb') as f:
+            f.write(image_binary)
+
+        return jsonify({'success': True, 'message': f'Photo {count} saved successfully'})
+    except Exception as e:
+        return jsonify({'success': False, 'message': f'Error saving photo: {str(e)}'})
 
 if __name__ == '__main__':
     app.run(debug=True)

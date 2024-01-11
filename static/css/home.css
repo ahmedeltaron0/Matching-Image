@@ -39,7 +39,6 @@ body {
     display: flex; /* Allow inline elements for flexibility */
     padding: 15px 15px; /* Add spacing around links */
     margin-right: 200px; /* Space between items */
-    font-weight: bold; /* Make the font bold */
     margin-left: -150px; /* Push the navigation to the right */
     margin-top: 5px;
   }
@@ -61,7 +60,7 @@ body {
   }
 
   h2 {
-    font-size: 30px;
+    font-size: 50px;
     color: #317185;
     font-weight: bold;
     margin-left: -700px;
@@ -71,8 +70,11 @@ body {
     font-size: 20px;
     color: white;
     font-weight:lighter;
-    margin-left: -600px;
-    margin-top: -0px;
+    width: 400px;
+    margin-left: -700px;
+    margin-top: 20px;
+    text-align: justify; /* Add this property for consistent line endings */
+
   }
   
   
