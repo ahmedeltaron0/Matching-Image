@@ -129,6 +129,7 @@
       font-size: 16px; /* Font size */
       font-weight: bold; /* Font weight */
       background-color: #317185;
+      cursor: pointer;
     }
   .account-link {
     color: white;
@@ -156,6 +157,23 @@
     top: 180px; /* Adjust the top position */
     left: 240px;/* Center horizontally */
     z-index:1; /* Ensure it's above the container */
+  }
+  .input-container {
+    position: relative;
+  }
+  
+  .icon {
+    position: absolute;
+    top: 35%;
+    left: 260px;
+    transform: translateY(-50%);
+    width: 20px; /* Adjust the icon width as needed */
+    height: auto;
+  }
+  
+  #email {
+    padding-left: 30px; /* Ensure space for the icon */
+    /* Add other input styles as needed */
   }
 
     

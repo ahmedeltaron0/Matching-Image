@@ -15,14 +15,13 @@
         <div class="container">  
             <img src="../static/img/logo_one.svg" alt="Logo" class="navbar-logo">
           <ul class="navbar-nav">
-            <li class="nav-item"><a style="color: grey;" href="#" class="nav-link">Home</a></li>
-            <li class="nav-item"><a style="color: grey;" href="#" class="nav-link">About</a></li>
-            <li class="nav-item"><a style="color: grey;" href="#" class="nav-link">Contact</a></li>
-            <li class="nav-item"><a style="color: grey;" href="#" class="nav-link">Camera</a></li>
-            <li class="nav-item"><a style="color: grey;" href="#" class="nav-link">IP</a></li>
-            <li class="nav-item"><a style="color: grey;" href="#" class="nav-link">Link</a></li>
-            <li class="nav-item"><a style="color: grey;" href="#" class="nav-link">Photo</a></li>
-
+            <li class="nav-item"><a style="color: grey;" href="{{ url_for('home') }}" class="nav-link">Home</a></li>
+            <li class="nav-item"><a style="color: grey;" href="{{ url_for('about') }}" class="nav-link">About</a></li>
+            <li class="nav-item"><a style="color: grey;" href="{{ url_for('contact') }}" class="nav-link">Contact</a></li>
+            <li class="nav-item"><a style="color: grey;" href="{{ url_for('camera') }}" class="nav-link">Camera</a></li>
+            <li class="nav-item"><a style="color: grey;" href="{{ url_for('ip') }}" class="nav-link">IP</a></li>
+            <li class="nav-item"><a style="color: grey;" href="{{ url_for('link') }}" class="nav-link">Link</Link></a></li>
+            <li class="nav-item"><a style="color: grey;" href="{{ url_for('photo') }}" class="nav-link">Photo</a></li>
           </ul>
         </div>
       </nav>  

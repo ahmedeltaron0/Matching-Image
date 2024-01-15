@@ -14,21 +14,18 @@ body {
     
   }
 .navbar {
-    display: flex;
-    flex-wrap: wrap;
     padding: 10px 20px;
     position: fixed;
-    top: 0; /* Adjusted to keep the navbar at the top of the viewport */
-    right: -400px; /* Adjust as needed */
+    top: 0;
     width: 100%;
-    justify-content: space-between; /* Aligns items evenly */
-    align-items: center; /* Aligns items vertically */
   }
-  
+  .navbar .container{
+    display: flex;
+    align-items: center;
+  }
   
   /* Navigation list styles */
   .navbar-nav {
-    display: flex;
     list-style: none;
     margin: 0; /* Remove default margin */
     padding: 0; /* Remove default padding */
@@ -36,11 +33,8 @@ body {
   
   /* Individual navigation item styles */
   .nav-item {
-    display: flex; /* Allow inline elements for flexibility */
     padding: 15px 15px; /* Add spacing around links */
     margin-right: 200px; /* Space between items */
-    margin-left: -150px; /* Push the navigation to the right */
-    margin-top: 5px;
   }
   .navbar-nav li {
     display: inline; /* Place list items inline */
@@ -54,9 +48,11 @@ body {
     text-decoration: none; /* Remove underline from links */
     text-decoration: none; /* Remove default underline */
     border-bottom: 1px solid transparent; /* Transparent border by default */
+    text-decoration: none;
   }
-  .nav-link:hover {
+  .nav-item:hover,.nav-item.active {
     border-bottom: 1px solid #C1E8FF; /* Draw a line under the link on hover */
+
   }
 
   h2 {
@@ -114,11 +110,8 @@ body {
     height: 50px;
   }
   .navbar-logo {
+    margin-top: -20px;
     width: 150px; /* Adjust image width as needed */
     height: auto; /* Maintain aspect ratio */
-    position: absolute;
-    top: -10px; /* Adjust top position as needed */
-    left: -350px; /* Adjust left position as needed */
   }
-  
   

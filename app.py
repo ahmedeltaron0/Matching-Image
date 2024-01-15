@@ -82,6 +82,8 @@ def login():
 @app.route('/home/')
 def home():
     return render_template('home.html')
+
+
 @app.route('/signin/')
 def signin():
     return render_template('signin.html')
@@ -89,21 +91,46 @@ def signin():
 @app.route('/about/')
 def about():
     return render_template('about.html')
+
+
+
 @app.route('/contact/')
 def contact():
     return render_template('contact.html')
+
+
+
 @app.route('/camera/')
 def camera():
     return render_template('camera.html')
+
+
+
 @app.route('/ip/')
 def ip():
     return render_template('ip.html')
+
+
+
 @app.route('/link/')
 def link():
     return render_template('link.html')
+
+
 @app.route('/photo/')
 def photo():
     return render_template('photo.html')
+
+
+@app.route('/home/')
+def homeH():
+    return render_template('home.html')
+
+
+
+
+
+
 @app.route('/save-photo', methods=['POST'])
 def save_photo():
     try:
@@ -122,6 +149,9 @@ def save_photo():
         return jsonify({'success': True, 'message': f'Photo {count} saved successfully'})
     except Exception as e:
         return jsonify({'success': False, 'message': f'Error saving photo: {str(e)}'})
+    
+    
+
 
 if __name__ == '__main__':
     app.run(debug=True)
