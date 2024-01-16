@@ -38,6 +38,19 @@
 let cameraStream;
 let cameraOpened = false;
 
+async function toggleCamera() {
+  try {
+    if (cameraOpened) {
+      closeCamera();
+    } else {
+      openCamera();
+    }
+    cameraOpened = !cameraOpened;
+  } catch (err) {
+    console.error('Error toggling the camera:', err);
+  }
+}
+
 async function openCamera() {
   try {
     cameraStream = await navigator.mediaDevices.getUserMedia({ video: true });
@@ -52,44 +65,9 @@ async function openCamera() {
     videoContainer.innerHTML = '';
     videoContainer.appendChild(video);
     videoContainer.style.display = 'block';
-
-    // Count from 1 to 3 and take a photo on each count
-    for (let count = 1; count <= 10; count++) {
-      await new Promise(resolve => setTimeout(resolve, 1000)); // Wait for 1 second
-
-      // Take photo and save in the dataset directory
-      takePhoto(count);
-    }
-
-    // Close the camera after taking three photos
-    closeCamera();
   } catch (err) {
     console.error('Error accessing the camera:', err);
   }
-}
-
-// ... (rest of your functions remain unchanged)
-
-
-function takePhoto(count) {
-  const canvas = document.createElement('canvas');
-  const video = document.querySelector('video');
-  canvas.width = video.videoWidth;
-  canvas.height = video.videoHeight;
-  const context = canvas.getContext('2d');
-  context.drawImage(video, 0, 0, canvas.width, canvas.height);
-
-  // Convert the canvas content to a data URL
-  const dataURL = canvas.toDataURL('image/jpeg');
-
-  // Simulate saving the photo in the dataset directory
-  savePhoto(dataURL, count);
-}
-
-function savePhoto(dataURL, count) {
-  // In a real application, you would save the photo to the server or perform other actions.
-  // For simplicity, this example logs the data URL to the console.
-  console.log('Photo ' + count + ' saved:', dataURL);
 }
 
 function closeCamera() {
@@ -102,6 +80,7 @@ function closeCamera() {
   videoContainer.innerHTML = '';
   videoContainer.style.display = 'none';
 }
+
 
 function handleClick() {
   const buttonContainer = document.querySelector('.button-container');
