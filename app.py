@@ -1,8 +1,10 @@
+import uuid
 from flask import Flask, render_template, request, flash, redirect, url_for,jsonify
 from firebase_admin import credentials, initialize_app
 from firebase_admin import auth  
 from firebase_admin.exceptions import FirebaseError
 import requests
+import os
 import base64
 
 
@@ -130,27 +132,31 @@ def homeH():
 
 
 
-
-@app.route('/save-photo', methods=['POST'])
+@app.route('/save_photo', methods=['POST'])
 def save_photo():
     try:
-        data = request.json
-        count = data.get('count', 1)
-        data_url = data.get('dataURL', '')
+        data = request.get_json()
+        photo_data = data.get('photo')
 
-        # Extract the base64 image data
-        _, image_data = data_url.split(',')
+        # Ensure the 'dataset' directory exists
+        dataset_directory = 'dataset'
+        if not os.path.exists(dataset_directory):
+            os.makedirs(dataset_directory)
 
-        # Decode and save the image
-        image_binary = base64.b64decode(image_data)
-        with open(f'dataset/photo_{count}.jpg', 'wb') as f:
-            f.write(image_binary)
+        # Generate a unique filename for each captured photo
+        filename = os.path.join(dataset_directory, f'captured_photo_{uuid.uuid4()}.jpg')
 
-        return jsonify({'success': True, 'message': f'Photo {count} saved successfully'})
+        # Decode base64 data and save the photo
+        with open(filename, 'wb') as file:
+            file.write(base64.b64decode(photo_data.split(',')[1]))
+
+        return jsonify({'message': 'Photo saved successfully.'}), 200
     except Exception as e:
-        return jsonify({'success': False, 'message': f'Error saving photo: {str(e)}'})
+        return jsonify({'error': str(e)}), 500
+
     
     
+
 
 
 if __name__ == '__main__':

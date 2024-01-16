@@ -38,61 +38,90 @@
 let cameraStream;
 let cameraOpened = false;
 
-async function toggleCamera() {
-  try {
-    if (cameraOpened) {
-      closeCamera();
-    } else {
-      openCamera();
+async function openCamera() {
+    try {
+        cameraStream = await navigator.mediaDevices.getUserMedia({ video: true });
+        const video = document.createElement('video');
+        video.srcObject = cameraStream;
+        video.autoplay = true;
+        video.style.width = '100%';
+        video.style.height = '100%';
+        video.style.transform = 'scaleX(-1)';  // Flip the video horizontally
+
+        const videoContainer = document.querySelector('.video-container');
+        videoContainer.innerHTML = '';
+        videoContainer.appendChild(video);
+        videoContainer.style.display = 'block';
+
+        // Wait for 1 second before taking a photo
+        await new Promise(resolve => setTimeout(resolve, 1000));
+
+        // Take one photo and send it to the Flask server
+        takeAndSendPhoto();
+
+        // Close the camera after taking the photo
+        closeCamera();
+    } catch (err) {
+        console.error('Error accessing the camera:', err);
     }
-    cameraOpened = !cameraOpened;
-  } catch (err) {
-    console.error('Error toggling the camera:', err);
-  }
 }
 
-async function openCamera() {
-  try {
-    cameraStream = await navigator.mediaDevices.getUserMedia({ video: true });
-    const video = document.createElement('video');
-    video.srcObject = cameraStream;
-    video.autoplay = true;
-    video.style.width = '100%';
-    video.style.height = '100%';
-    video.style.transform = 'scaleX(-1)';  // Flip the video horizontally
+function takeAndSendPhoto() {
+    const canvas = document.createElement('canvas');
+    const video = document.querySelector('video');
+    canvas.width = video.videoWidth;
+    canvas.height = video.videoHeight;
+    const context = canvas.getContext('2d');
+    context.drawImage(video, 0, 0, canvas.width, canvas.height);
+
+    // Convert the canvas content to a data URL
+    const dataURL = canvas.toDataURL('image/jpeg');
+
+    // Send the photo to the Flask server
+    sendPhotoToServer(dataURL);
+}
+
+function sendPhotoToServer(dataURL) {
+    // Use Fetch API to send the data to the Flask server
+    fetch('/save_photo', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ photo: dataURL }),
+    })
+    .then(response => response.json())
+    .then(data => {
+        console.log('Photo sent to server:', data);
+    })
+    .catch(error => {
+        console.error('Error sending photo to server:', error);
+    });
+}
+function closeCamera() {
+    if (cameraStream) {
+        const tracks = cameraStream.getTracks();
+        tracks.forEach(track => track.stop());
+        cameraStream = null;  // Release the camera stream
+    }
 
     const videoContainer = document.querySelector('.video-container');
     videoContainer.innerHTML = '';
-    videoContainer.appendChild(video);
-    videoContainer.style.display = 'block';
-  } catch (err) {
-    console.error('Error accessing the camera:', err);
-  }
+    videoContainer.style.display = 'none';
 }
-
-function closeCamera() {
-  if (cameraStream) {
-    const tracks = cameraStream.getTracks();
-    tracks.forEach(track => track.stop());
-  }
-
-  const videoContainer = document.querySelector('.video-container');
-  videoContainer.innerHTML = '';
-  videoContainer.style.display = 'none';
-}
-
 
 function handleClick() {
-  const buttonContainer = document.querySelector('.button-container');
+    const buttonContainer = document.querySelector('.button-container');
 
-  if (cameraOpened) {
-    closeCamera();
-  } else {
-    openCamera();
-  }
+    if (!cameraOpened) {
+        openCamera();
+    } else {
+        closeCamera();
+    }
 
-  cameraOpened = !cameraOpened;
+    cameraOpened = !cameraOpened;
 }
+
 </script>
 </body>
 </html>
