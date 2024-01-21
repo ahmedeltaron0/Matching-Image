@@ -124,12 +124,10 @@ def photo():
     return render_template('photo.html')
 
 
-@app.route('/home/')
-def homeH():
+
+@app.route('/')
+def open():
     return render_template('home.html')
-
-
-
 
 
 @app.route('/save_photo', methods=['POST'])
@@ -156,8 +154,5 @@ def save_photo():
 
     
     
-
-
-
 if __name__ == '__main__':
     app.run(debug=True)

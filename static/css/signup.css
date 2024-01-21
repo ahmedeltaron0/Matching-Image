@@ -107,6 +107,7 @@
     
   
     .login-form input[type="email"],
+    .login-form input[type="text"],
     .login-form input[type="password"],
     .login-form button[type="submit"] {
       width: 100%; /* Full width of the container */
